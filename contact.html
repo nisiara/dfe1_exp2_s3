@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Somos la tienda de videojuegos más completa, con las últimas novedades y ofertas exclusivas.">
+  <link rel="canonical" href="https://www.gameandplay.cl">
+  <title>Contacto | Next Up Games</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap-5.3.8/bootstrap.css">
+  <link rel="stylesheet" href="css/comun.css">
+  <link rel="stylesheet" href="css/contact.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid p-0">
+        <a class="navbar-brand" href="index.html">
+          <img src="images/logo.png" alt="Logo" width="180" height="72" class="d-inline-block align-text-top">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link" href="games.html">Juegos</a>
+            <a class="nav-link active"  aria-current="page" href="contact.html">Contacto</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="contact">
+      <h2>✍️ Contacto</h2>
+      <p>Si tienes alguna pregunta o consulta, no dudes en ponerte en contacto con nosotros a través del siguiente formulario:</p>
+      <form action="thank-you.html" method="post" class="contact__form">
+        <fieldset>
+          <legend>Información de contacto</legend>
+          <div class="contact__input">
+            <label for="name">Nombre:</label>
+            <input name="name" required>
+          </div>
+          <div class="contact__input">
+            <label for="name">Apellido:</label>
+            <input name="last-name" required>
+          </div>
+          <div class="contact__input">
+            <label for="email">Correo electrónico:</label>
+            <input type="email" name="email" required>
+          </div>
+          <div class="contact__input">
+            <label for="email">Teléfono:</label>
+            <input type="tel" name="phone">
+          </div>
+        </fieldset>
+        
+        <fieldset>
+          <legend>Mensaje</legend>
+          <div class="contact__input">
+            <label>Asunto:</label>
+            <select name="asunto" required>
+              <option value="consulta">Consulta</option>
+              <option value="sugerencia">Sugerencia</option>
+              <option value="reclamo">Reclamo</option>
+            </select>
+          </div>
+          <div class="contact__input">
+            <label for="message">Mensaje:</label>
+            <textarea id="message" name="message" rows="8" required></textarea>
+          </div>
+
+          <button class="contact__submit">Enviar</button>
+        </fieldset>
+      </form>
+    </section>
+  </main>
+  <hr>
+  <footer>
+    <address>
+      <a href="mailto:contacto@gameandplay.cl">contacto@nextupgames.cl</a><br>
+      <a href="tel:+56987654321">+56 9 8765 4321</a>
+    </address>
+  </footer>
+  
+</body>
+<script src="js/bootstrap-5.3.8/bootstrap.min.js"></script>
+</html>
+

@@ -1,0 +1,59 @@
+.games{
+  margin-bottom: 6rem;
+}
+.games h2{
+  margin-bottom: 1rem;
+}
+.games > div{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.game{
+  border-radius: var(--border-md);
+  padding: 1rem .5rem;
+}
+.game:nth-child(odd){
+  background: var(--color-background);
+  border-radius: var(--border-md);
+}
+.game__image img{
+  display: block;
+  margin: auto;
+  border-radius: var(--border-md);
+
+}
+.game__details{
+  display: flex;
+  padding: .75rem .75rem 0;
+  flex-direction: column;
+  gap: .35rem;
+}
+h3.game__name{
+  font-size: var(--text-sm);
+  font-weight: bold;
+}
+.game__platform{
+  width: fit-content;
+  font-size: var(--text-xxs);
+  font-weight: 500;
+  border-radius: var(--border-sm);
+  padding: .15rem .35rem;
+  background: var(--color-secondary);
+}
+.game__price{
+  margin-top: auto;
+  font-size: var(--text-xs);
+  font-weight: 600;
+
+}
+.game__link{
+  margin-top: .5rem;
+  border: 1px solid #e0e7ff;
+  display: block;
+  text-align: center;
+  font-size: var(--text-xxs);
+  border-radius: var(--border-md);
+  padding: .75rem .5rem;
+  transition: background 0.3s ease;
+}

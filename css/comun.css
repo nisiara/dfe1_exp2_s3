@@ -1,0 +1,116 @@
+:root{
+  --color-primary: #6272a3;
+  --color-secondary: #d4dfff;
+  /* --color-tertiary: #404a5c; */
+  --color-background: #f4f8ff;
+  --color-text: #2d2d2d;
+  --font-family: "Lexend Deca", sans-serif;
+  --shadow: 8px 8px 20px rgba(69, 164, 242, 0.23);
+  --text-xxxs: 0.5764rem;
+  --text-xxs: 0.6917rem;
+  --text-xs: 0.83rem;
+  --text-sm: 0.996rem; 
+  --text-md: 1.1952rem;
+  --text-lg: 1.4342rem;
+  --text-xl: 1.7211rem;
+  --text-xxl: 2.0653rem;
+
+  --border-lg: 12px;
+  --border-md: 8px;
+  --border-sm: 4px;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body{
+  font-family: var(--font-family);
+  color: var(--color-text);
+  font-weight: 300;
+}
+
+h6 { font-size: var(--text-xs); }
+h5 { font-size: var(--text-sm); }
+h4 { font-size: var(--text-md); }
+h3 { font-size: var(--text-lg); }
+h2 { font-size: var(--text-xl); }
+h1 { font-size: var(--text-xxl); }
+
+p { font-size: var(--text-xs); }
+
+a{
+  color: inherit;
+  text-decoration: none;
+}
+
+hr{
+  border: none;
+  border-top: 1px solid #e0e0e0;
+}
+
+main,header,footer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+.navbar-toggler{
+  width: 48px;
+  height: 48px;
+  background: #111111;
+
+}
+.navbar-toggler-icon{
+  width: 1em;
+  height: 1em;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='rgba%2833, 37, 41, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+  filter: invert(1);
+}
+
+.navbar-nav .nav-link {
+  font-size: var(--text-xs);
+  font-weight: 500;
+}
+@media screen and (min-width: 768px) {
+  .navbar-nav .nav-link.active {
+    border-bottom: 3px solid var(--color-text);
+    
+    
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar-nav .nav-link {
+    text-align: center;
+  }
+}
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav {
+    margin-left: auto;
+  }
+}
+
+
+
+footer {
+  text-align: center;
+  font-size: 0.73rem;
+  color: #9f9f9f;
+  padding: 1rem 1rem 2rem;
+}
+
+footer address{
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+footer a{
+  font-style: normal;
+  color: var(--color-text);
+}

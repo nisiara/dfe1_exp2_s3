@@ -1,0 +1,34 @@
+.thank-you{
+  margin-bottom: 6rem;
+}
+.thank-you p{
+  font-size: var(--text-xs);
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+.thank-you__emoji {
+  font-size: var(--text-xxl);
+  margin-bottom: 1rem;
+}
+
+.thank-you a{
+  border: 1px solid #e0e7ff;
+  margin-top: 3rem;
+  display: block;
+  text-align: center;
+  font-size: var(--text-xxs);
+  border-radius: var(--border-md);
+  padding: 1rem 3.5rem;
+  transition: background 0.3s ease;
+}
+@media screen and (min-width: 576px) {
+  .thank-you a {
+    width: fit-content;
+  }
+}
+
+.thank-you a:hover{
+  background: var(--color-primary);
+  color: #f6f6f6;
+  border-color: var(--color-primary);
+}
