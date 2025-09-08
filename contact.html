@@ -38,44 +38,48 @@
     <section class="contact">
       <h2>✍️ Contacto</h2>
       <p>Si tienes alguna pregunta o consulta, no dudes en ponerte en contacto con nosotros a través del siguiente formulario:</p>
-      <form action="thank-you.html" method="post" class="contact__form">
-        <fieldset>
-          <legend>Información de contacto</legend>
-          <div class="contact__input">
-            <label for="name">Nombre:</label>
-            <input name="name" required>
-          </div>
-          <div class="contact__input">
-            <label for="name">Apellido:</label>
-            <input name="last-name" required>
-          </div>
-          <div class="contact__input">
-            <label for="email">Correo electrónico:</label>
-            <input type="email" name="email" required>
-          </div>
-          <div class="contact__input">
-            <label for="email">Teléfono:</label>
-            <input type="tel" name="phone">
-          </div>
-        </fieldset>
-        
-        <fieldset>
-          <legend>Mensaje</legend>
-          <div class="contact__input">
-            <label>Asunto:</label>
-            <select name="asunto" required>
-              <option value="consulta">Consulta</option>
-              <option value="sugerencia">Sugerencia</option>
-              <option value="reclamo">Reclamo</option>
-            </select>
-          </div>
-          <div class="contact__input">
-            <label for="message">Mensaje:</label>
-            <textarea id="message" name="message" rows="8" required></textarea>
-          </div>
+      <form action="thank-you.html" method="post" class="row gy-3">
+        <div class="col-md-6">
+          <fieldset>
+            <legend>Información de contacto</legend>
+            <div class="contact__input">
+              <label for="name">Nombre:</label>
+              <input name="name" required>
+            </div>
+            <div class="contact__input">
+              <label for="name">Apellido:</label>
+              <input name="last-name" required>
+            </div>
+            <div class="contact__input">
+              <label for="email">Correo electrónico:</label>
+              <input type="email" name="email" required>
+            </div>
+            <div class="contact__input">
+              <label for="email">Teléfono:</label>
+              <input type="tel" name="phone">
+            </div>
+          </fieldset>
+        </div>
 
-          <button class="contact__submit">Enviar</button>
-        </fieldset>
+        <div class="col-md-6">
+          <fieldset>
+            <legend>Mensaje</legend>
+            <div class="contact__input">
+              <label>Asunto:</label>
+              <select name="asunto" required>
+                <option value="consulta">Consulta</option>
+                <option value="sugerencia">Sugerencia</option>
+                <option value="reclamo">Reclamo</option>
+              </select>
+            </div>
+            <div class="contact__input">
+              <label for="message">Mensaje:</label>
+              <textarea id="message" name="message" rows="8" required></textarea>
+            </div>
+
+            <button class="contact__submit">Enviar</button>
+          </fieldset>
+        </div>
       </form>
     </section>
   </main>

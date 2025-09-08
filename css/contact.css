@@ -6,20 +6,12 @@
   font-size: var(--text-xs);
   font-weight: 400;
 }
-.contact__form{
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-}
-@media screen and (max-width: 767px) {
-  .contact__form {
-    grid-template-columns: 1fr;
-  }
-}
+
 fieldset{
   border: 1px solid #e1e9f6;
   border-radius: var(--border-lg);
   padding: 1rem;
+  height: 100%;
 }
 legend{
   padding: 1rem;
@@ -42,14 +34,14 @@ legend{
   transition: border-color 0.3s ease-in-out;
   background: var(--color-background);
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .contact__input input,
   .contact__input select,
   .contact__submit {
     width: 100%;
   }
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
   .contact__input input,
   .contact__input select,
   .contact__submit {

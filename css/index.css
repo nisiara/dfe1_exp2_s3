@@ -108,26 +108,18 @@
   border-color: var(--color-primary);
 }
 
-
 .best-sellers {
   margin-bottom: 6rem;
 }
 .best-sellers h2 {
   margin-bottom: 1rem;
 }
-.best-sellers > div {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-.best-seller__list {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
+
+.best-sellers ol{
   list-style: none;
-  padding-left: 0;
+  
 }
+
 .best-seller__game a{
   display: flex;
   padding: .5rem 1rem;
@@ -181,11 +173,11 @@
 .featured-games h2 {
   margin-bottom: 1rem;
 }
-.featured-games > div {
+/* .featured-games > div {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
-}
+} */
 .featured-game {
   transition: all 0.3s ease;
 }

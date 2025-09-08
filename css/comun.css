@@ -76,11 +76,19 @@ main,header,footer {
   font-size: var(--text-xs);
   font-weight: 500;
 }
+@media screen and (max-width: 767px) {
+  .navbar-nav{
+    padding: 20px 0 0;
+  }
+  .navbar-nav .nav-link.active {
+    background: #111111;
+    color: #FFFFFF;
+    border-radius: var(--border-sm);
+  }
+}
 @media screen and (min-width: 768px) {
   .navbar-nav .nav-link.active {
     border-bottom: 3px solid var(--color-text);
-    
-    
   }
 }
 

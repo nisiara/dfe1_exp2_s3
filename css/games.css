@@ -4,11 +4,7 @@
 .games h2{
   margin-bottom: 1rem;
 }
-.games > div{
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-}
+
 .game{
   border-radius: var(--border-md);
   padding: 1rem .5rem;
