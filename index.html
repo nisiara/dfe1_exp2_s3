@@ -35,7 +35,7 @@
     </nav>
   </header>
   <main>
-    <section id="carouselHome" class="carousel slide" data-bs-ride="carousel">
+    <section id="favoriteGamesContainer" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <article class="hero" id="carouselTwo">
@@ -89,68 +89,13 @@
     <section class="best-sellers">
       <h2>Más vendidos</h2>
       <div>
-        <ol class="row gy-3">
-          <li class="best-seller__game col-md-6 col-lg-4">
-            <a href="game-details.html">
-              <img src="./assets/images/resident-evil-2.avif" class="best-seller__image" alt="Resident Evil 2" width="100" height="100">
-              <div>
-                <span class="best-seller__name">Resident Evil 2</span>
-                <span class="best-seller__platform">PS5</span>
-                <span class="best-seller__price">$49.990</span>
-              </div>
-            </a>
-          </li>
-
-          <li class="best-seller__game col-md-6 col-lg-4">
-            <a href="game-details.html">
-              <img src="./assets/images/call-of-duty.avif" class="best-seller__image" alt="Call of Duty" width="100" height="100">
-              <div>
-                <span class="best-seller__name">Call of Duty: Modern Warfare</span>
-                <span class="best-seller__platform">PC</span>
-                <span class="best-seller__price">$49.990</span>
-              </div>
-            </a>
-          </li>
-
-          <li class="best-seller__game col-md-6 col-lg-4">
-            <a href="game-details.html">
-              <img src="./assets/images/gtav.avif" class="best-seller__image" alt="GTA V" width="100" height="100">
-              <div>
-                <span class="best-seller__name"> Grand Theft Auto V</span>
-                <span class="best-seller__platform">PS5 - XBox</span>
-                <span class="best-seller__price">$49.990</span>
-              </div>
-            </a>
-           </li>
-
-          <li class="best-seller__game col-md-6 col-lg-4">
-            <a href="game-details.html">
-              <img src="./assets/images/mortal-kombat-1.avif" class="best-seller__image" alt="Mortal Kombat 1" width="100" height="100">
-              <div>
-                <span class="best-seller__name">Mortal Kombat 1</span>
-                <span class="best-seller__platform">PS5</span>
-                <span class="best-seller__price">$49.990</span>
-              </div>
-            </a>
-          </li>
-
-          <li class="best-seller__game col-md-6 col-lg-4">
-            <a href="game-details.html">
-              <img src="./assets/images/silent-hill-2.avif" class="best-seller__image" alt="Silent Hill 2" width="100" height="100">
-              <div>
-                <span class="best-seller__name">Silent Hill</span>
-                <span class="best-seller__platform">PS5 - XBox</span>
-                <span class="best-seller__price">Gratis</span>
-              </div>
-            </a>
-          </li>
-        </ol>
+        <ol id="bestSellerGamesContainer" class="row gy-3"></ol>
       </div>
     </section>
     
     <section class="featured-games">
       <h2>Productos destacados</h2>
-      <div class="row">
+      <div id="featuredGamesContainer" class="row">
         <article class="col-md-6 col-lg-4">
           <img src="./assets/images/street-fighter-6.avif" class="card-img-top" alt="Street fighter 6" width="100%" height="280">
           <div class="card-body">
@@ -190,5 +135,6 @@
 </body>
 
   <script src="assets/js/bootstrap-5.3.8/bootstrap.min.js"></script>
+  <script src="./assets/js/productos.js"></script>
 </html>
 
