@@ -15,25 +15,33 @@
   <link rel="stylesheet" href="assets/css/index.css">
 </head>
 <body>
-  <header>
-    <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid p-0">
+  <div class="container-fluid p-0">
+    <header>
+      <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="index.html">
           <img src="./assets/images/logo.png" alt="Logo" width="180" height="72" class="d-inline-block align-text-top">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <form class="search" name="search-product">
+          <input type="search" name="search" placeholder="Busca tu juego acá!">
+          <button>🔍</button>
+        </form>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
-            <a class="nav-link" href="games.html">Juegos</a>
-            <a class="nav-link" href="contact.html">Contacto</a>
+        
+
+          <div class="collapse navbar-collapse" id="navbarMenu">
+            <div class="navbar-nav">
+              <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+              <a class="nav-link" href="games.html">Juegos</a>
+              <a class="nav-link" href="contact.html">Contacto</a>
+            </div>
           </div>
-        </div>
-      </div>
-    </nav>
-  </header>
+          <button class="cart" type="button">🛍️</button>
+       
+      </nav>
+    </header>
+  </div>
   <main>
     <section id="favoriteGamesContainer" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
@@ -62,7 +70,8 @@
           </article>    
         </div>
         
-        <div class="carousel-item"><article class="hero" id="carouselThree">
+        <div class="carousel-item">
+          <article class="hero" id="carouselThree">
             <div class="hero__description">
               <span>favorito</span>
               <h3>Crash Team Rumble</h3>
@@ -75,17 +84,16 @@
         
         </div>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
+      <button class="carousel-control-prev" type="button" data-bs-target="#favoriteGamesContainer" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Anterior</span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselHome" data-bs-slide="next">
+      <button class="carousel-control-next" type="button" data-bs-target="#favoriteGamesContainer" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Siguiente</span>
       </button>
     </section>
    
-
     <section>
       <h2>Más vendidos</h2>
       <div>
