@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', function(){
       bestSellerGames = games.filter(game => game.tag === 'best seller');
       displayBestSellerGames(bestSellerGames, $BEST_SELLER_CONTAINER);
 
-      // featuredGames = games.filter(product => product.tag === 'featured');
-      // displayFeaturedGames(featuredGames, $FEATURED_CONTAINER);
+      featuredGames = games.filter(product => product.tag === 'featured');
+      displayFeaturedGames(featuredGames, $FEATURED_CONTAINER);
      
     } catch (error) {
       console.error(error.message);
@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function(){
       const $GAME_ITEM = document.createElement('li');
       $GAME_ITEM.classList.add('best-seller__game', 'col-md-6', 'col-lg-4');
       
-
       const $GAME_LINK_CONTAINER = document.createElement('a');
       $GAME_LINK_CONTAINER.href = 'game-details.html';
 
@@ -58,13 +57,13 @@ document.addEventListener('DOMContentLoaded', function(){
       $GAME_PLATFORM.textContent = game.platform;
       $GAME_PLATFORM.classList.add('best-seller__platform');
 
-      const $PRODUCT_PRICE = document.createElement('span');
-      $PRODUCT_PRICE.textContent = '$' + game.price.toLocaleString();
-      $PRODUCT_PRICE.classList.add('best-seller__price');
+      const $GAME_PRICE = document.createElement('span');
+      $GAME_PRICE.textContent = '$' + game.price.toLocaleString();
+      $GAME_PRICE.classList.add('best-seller__price');
       
       $GAME_DETAILS_CONTAINER.appendChild($GAME_NAME);
       $GAME_DETAILS_CONTAINER.appendChild($GAME_PLATFORM);
-      $GAME_DETAILS_CONTAINER.appendChild($PRODUCT_PRICE);
+      $GAME_DETAILS_CONTAINER.appendChild($GAME_PRICE);
 
       const $GAME_IMG = document.createElement('img');
       $GAME_IMG.src = game.image;
@@ -84,20 +83,78 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   const $FEATURED_CONTAINER = document.getElementById('featuredGamesContainer');
 
+  function displayFeaturedGames(featuredGames, container){
+    featuredGames.forEach( featuredGame => {
+
+      const $GAME_ITEM__COLUMN = document.createElement('div');
+      $GAME_ITEM__COLUMN.classList.add('col-sm-6', 'col-md-4', 'col-lg-3');
+
+      const $GAME_CARD = document.createElement('article');
+      $GAME_CARD.classList.add('card', 'featured__game');
+
+      const $GAME_IMG = document.createElement('img');
+      $GAME_IMG.src = featuredGame.image;
+      $GAME_IMG.alt = featuredGame.title;
+      $GAME_IMG.classList.add('card-img-top');
+      $GAME_IMG.width = 280;
+      $GAME_IMG.height = 280;
+
+      $GAME_CARD.appendChild($GAME_IMG);
+
+      const $GAME_DETAILS_CONTAINER = document.createElement('div');
+      $GAME_DETAILS_CONTAINER.classList.add('card-body')
+
+      const $GAME_NAME = document.createElement('h5');
+      $GAME_NAME.classList.add('featured__name');
+      $GAME_NAME.textContent = featuredGame.name;
+
+      const $GAME_DESCRIPTION_BUTTON = document.createElement('button');
+      $GAME_DESCRIPTION_BUTTON.type = 'button'
+      $GAME_DESCRIPTION_BUTTON.classList.add('featured__description-button')
+      $GAME_DESCRIPTION_BUTTON.textContent = 'Ver descripción'
+      $GAME_DESCRIPTION_BUTTON.addEventListener('click', function(){
+       
+        if( $GAME_DETAILS_CONTAINER.classList.contains('card-body--open-description')){
+          $GAME_DETAILS_CONTAINER.classList.remove('card-body--open-description')
+          $GAME_DESCRIPTION_BUTTON.textContent = 'Ver descripción'
+        } else {
+          $GAME_DETAILS_CONTAINER.classList.add('card-body--open-description')
+          $GAME_DESCRIPTION_BUTTON.textContent = 'Ocultar descripción'
+        }
+
+      })
+
+      const $GAME_PLATFORM = document.createElement('span');
+      $GAME_PLATFORM.textContent = featuredGame.platform;
+      $GAME_PLATFORM.classList.add('featured__platform');
+
+      const $GAME_PRICE = document.createElement('span');
+      $GAME_PRICE.textContent = '$' + featuredGame.price.toLocaleString();
+      $GAME_PRICE.classList.add('featured__price');
+
+      const $GAME_DESCRIPTION = document.createElement('p');
+      $GAME_DESCRIPTION.classList.add('featured__description');
+      $GAME_DESCRIPTION.textContent = featuredGame.description;
+
+      const $GAME_LINK = document.createElement('a');
+      $GAME_LINK.href = 'game-details.html';
+      $GAME_LINK.classList.add('btn', 'btn-outline-secondary', 'd-block')
+      $GAME_LINK.textContent = 'Ver detalle';
+
+      $GAME_DETAILS_CONTAINER.appendChild($GAME_NAME);
+      $GAME_DETAILS_CONTAINER.appendChild($GAME_DESCRIPTION);
+      $GAME_DETAILS_CONTAINER.appendChild($GAME_DESCRIPTION_BUTTON);
+      $GAME_DETAILS_CONTAINER.appendChild($GAME_PLATFORM);
+      $GAME_DETAILS_CONTAINER.appendChild($GAME_PRICE);
+      $GAME_DETAILS_CONTAINER.appendChild($GAME_LINK);
+
+      $GAME_CARD.appendChild($GAME_DETAILS_CONTAINER);
+      $GAME_ITEM__COLUMN.appendChild($GAME_CARD);
+      container.appendChild($GAME_ITEM__COLUMN);
+    })
+  }
 
 
 

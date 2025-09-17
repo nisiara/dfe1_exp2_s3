@@ -5,7 +5,7 @@
     "price": 39990,
     "platform": "PS5 - XBox - PC",
     "description": "Un catálogo diverso de 18 luchadores. Juega con los maestros legendarios y los nuevos favoritos del público, como Ryu, Chun-Li, Luke, Jamie y muchos más, en esta nueva edición donde cada personaje cuenta con rediseños impresionantes y especiales cinemáticos emocionantes.",
-    "image": "./assets/images/street-fighter.avif",
+    "image": "./assets/images/street-fighter-6.avif",
     "tag": "featured"
   },
   {
@@ -69,7 +69,7 @@
     "price": 39990,
     "platform": "PS5 - XBox - PC",
     "description": "Experimenta el ganador de más de 300 premios del Juego del año, que ahora cuenta con una serie de mejoras técnicas que hacen de The Last of Us Part II Remastered la forma definitiva de jugar la historia de Ellie y Abby, aclamada por la crítica.",
-    "image": "./assets/images/the-last-of-us-2,avif",
+    "image": "./assets/images/the-last-of-us-2.avif",
     "tag": "featured"
   },
   {
@@ -79,7 +79,7 @@
     "platform": "PS5 - XBox",
     "description": "Unravel te presenta a Yarny, un tierno y adorable ovillo de lana, que se va desenrollando según te mueves. Usa un hilo de lana para balancearte de rama en rama o para engancharte a una cometa, ninguna proeza es demasiado grande. Yarny es la representación de los lazos que nos unen con aquellos a los que amamos. ",
     "image": "./assets/images/unravel.avif",
-    "tag": ""
+    "tag": "featured"
   },
   {
     "id": 10,
