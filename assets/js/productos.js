@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function(){
   const JSON_URL = './assets/data/products.json';
 
   let games = [];
-  let favoriteGames = [];
   let bestSellerGames = [];
   let featuredGames = [];
   let searchGames = [];
@@ -14,16 +13,12 @@ document.addEventListener('DOMContentLoaded', function(){
       if(!response.ok) throw new Error ('Hubo un error en la carga del catálogo de juegos')
       
       games = await response.json();
-      console.log('games', games)
-        
-      // favoriteGames = games.filter(product => product.tag === 'favorito');
-      // displayFavoriteGames(favoriteGames, $FAVORITE_CONTAINER);
 
       bestSellerGames = games.filter(game => game.tag === 'best seller');
-      displayBestSellerGames(bestSellerGames, $BEST_SELLER_CONTAINER);
+      displayGames(bestSellerGames, $BEST_SELLER_CONTAINER, SECTIONS.bestSeller);
 
       featuredGames = games.filter(product => product.tag === 'featured');
-      displayFeaturedGames(featuredGames, $FEATURED_CONTAINER);
+      displayGames(featuredGames, $FEATURED_CONTAINER, SECTIONS.featured);
      
     } catch (error) {
       console.error(error.message);
@@ -32,129 +27,124 @@ document.addEventListener('DOMContentLoaded', function(){
 
   fetchGames(JSON_URL);
 
+  const SECTIONS = {
+    bestSeller: 'bestSeller',
+    featured: 'featured',
+    search: 'search',
+    cart: 'cart'
+  }
 
-  const $FAVORITE_CONTAINER = document.getElementById('favoriteGamesContainer');
-  
-  
-  
   const $BEST_SELLER_CONTAINER = document.getElementById('bestSellerGamesContainer');
-  
-  function displayBestSellerGames(games, container) {
+  const $FEATURED_CONTAINER = document.getElementById('featuredGamesContainer');
+  const $SEARCH_CONTAINER = document.getElementById('searchGamesContainer');
+
+  function displayGames(games, container, section) {
     games.forEach(game => {
-      const $GAME_ITEM = document.createElement('li');
-      $GAME_ITEM.classList.add('best-seller__game', 'col-md-6', 'col-lg-4');
-      
-      const $GAME_LINK_CONTAINER = document.createElement('a');
-      $GAME_LINK_CONTAINER.href = 'game-details.html';
+      const $GAME_ITEM = document.createElement('article');
 
-      const $GAME_DETAILS_CONTAINER = document.createElement('div');
-      $GAME_DETAILS_CONTAINER.classList.add('best-seller__details')
-      
-      const $GAME_NAME = document.createElement('span');
-      $GAME_NAME.textContent = game.name;
-      $GAME_NAME.classList.add('best-seller__name');
-      
-      const $GAME_PLATFORM = document.createElement('span');
-      $GAME_PLATFORM.textContent = game.platform;
-      $GAME_PLATFORM.classList.add('best-seller__platform');
+      //JUEGO
+      if(section === SECTIONS.bestSeller){
+        $GAME_ITEM.classList.add('game', 'col-md-6', 'col-lg-4');
+      }
+      if(section === SECTIONS.search){
+        $GAME_ITEM.classList.add('game');
+      }
+      if(section === SECTIONS.featured){
+        $GAME_ITEM.classList.add('game', 'col-sm-6', 'col-md-4', 'col-lg-3');
+      }
 
-      const $GAME_PRICE = document.createElement('span');
-      $GAME_PRICE.textContent = '$' + game.price.toLocaleString();
-      $GAME_PRICE.classList.add('best-seller__price');
-      
-      $GAME_DETAILS_CONTAINER.appendChild($GAME_NAME);
-      $GAME_DETAILS_CONTAINER.appendChild($GAME_PLATFORM);
-      $GAME_DETAILS_CONTAINER.appendChild($GAME_PRICE);
-
+      //JUEGO IMAGEN
       const $GAME_IMG = document.createElement('img');
       $GAME_IMG.src = game.image;
       $GAME_IMG.alt = game.name;
-      $GAME_IMG.classList.add('best-seller__image');
-      $GAME_IMG.width = 100;
-      $GAME_IMG.height = 100;
+      $GAME_IMG.classList.add('game__image');
+      if(section === SECTIONS.bestSeller || section === SECTIONS.search){
+        $GAME_IMG.width = 100;
+        $GAME_IMG.height = 100;
+      }
+      if(section === SECTIONS.featured ){
+        $GAME_IMG.width = 400;
+        $GAME_IMG.height = 400;
+      }
 
-      $GAME_LINK_CONTAINER.appendChild($GAME_IMG);
-      $GAME_LINK_CONTAINER.appendChild($GAME_DETAILS_CONTAINER);
+      //JUEGO NOMBRE
+      const $GAME_NAME = document.createElement('span');
+      $GAME_NAME.textContent = game.name;
+      $GAME_NAME.classList.add('game__name');
       
-      $GAME_ITEM.appendChild($GAME_LINK_CONTAINER);
-     
+      //JUEGO PLATAFORMA
+      const $GAME_PLATFORM = document.createElement('span');
+      $GAME_PLATFORM.textContent = game.platform;
+      $GAME_PLATFORM.classList.add('game__platform');
+
+       // JUEGO PRECIO
+      const $GAME_PRICE = document.createElement('span');
+      $GAME_PRICE.textContent = '$' + game.price.toLocaleString();
+      $GAME_PRICE.classList.add('game__price');
+      
+      //JUEGO CONTENEDOR DETALLES
+      const $GAME_DETAILS_CONTAINER = document.createElement('div');
+      $GAME_DETAILS_CONTAINER.classList.add('game__details')
+
+      //JUEGO CONTENDOR LINK
+      if(section === SECTIONS.bestSeller || section === SECTIONS.search){
+        const $GAME_LINK_CONTAINER = document.createElement('a');
+        $GAME_LINK_CONTAINER.classList.add('game__link-container')
+        $GAME_LINK_CONTAINER.href = 'game-details.html';
+
+        $GAME_LINK_CONTAINER.appendChild($GAME_IMG);
+        $GAME_LINK_CONTAINER.appendChild($GAME_DETAILS_CONTAINER);
+      
+        $GAME_ITEM.appendChild($GAME_LINK_CONTAINER);
+
+        $GAME_DETAILS_CONTAINER.appendChild($GAME_NAME);
+        $GAME_DETAILS_CONTAINER.appendChild($GAME_PLATFORM);
+        $GAME_DETAILS_CONTAINER.appendChild($GAME_PRICE);
+      }
+
+      
+      if(section === SECTIONS.featured){
+        //JUEGO DESCRIPCION
+        const $GAME_DESCRIPTION = document.createElement('p');
+        $GAME_DESCRIPTION.classList.add('game__description');
+        $GAME_DESCRIPTION.textContent = game.description;
+
+        //JUEGO DESCRIPCION BOTON
+        const $GAME_DESCRIPTION_BUTTON = document.createElement('button');
+        $GAME_DESCRIPTION_BUTTON.type = 'button'
+        $GAME_DESCRIPTION_BUTTON.classList.add('game__description-button')
+        $GAME_DESCRIPTION_BUTTON.textContent = 'Ver descripción'
+        
+        $GAME_DESCRIPTION_BUTTON.addEventListener('click', function(){
+          if( $GAME_DETAILS_CONTAINER.classList.contains('game__description--open-description')){
+            $GAME_DETAILS_CONTAINER.classList.remove('game__description--open-description')
+            $GAME_DESCRIPTION_BUTTON.textContent = 'Ver descripción'
+          } else {
+            $GAME_DETAILS_CONTAINER.classList.add('game__description--open-description')
+            $GAME_DESCRIPTION_BUTTON.textContent = 'Ocultar descripción'
+          }
+        })
+
+        //JUEGO LINK BOTON
+        const $GAME_LINK = document.createElement('a');
+        $GAME_LINK.href = 'game-details.html';
+        $GAME_LINK.classList.add('btn', 'btn-outline-secondary', 'd-block')
+        $GAME_LINK.textContent = 'Ver detalle';
+        
+        $GAME_ITEM.appendChild($GAME_IMG);
+        $GAME_DETAILS_CONTAINER.appendChild($GAME_NAME);
+        $GAME_DETAILS_CONTAINER.appendChild($GAME_DESCRIPTION);
+        $GAME_DETAILS_CONTAINER.appendChild($GAME_DESCRIPTION_BUTTON);
+        $GAME_DETAILS_CONTAINER.appendChild($GAME_PLATFORM);
+        $GAME_DETAILS_CONTAINER.appendChild($GAME_PRICE);
+        $GAME_DETAILS_CONTAINER.appendChild($GAME_LINK);
+
+        $GAME_ITEM.appendChild($GAME_DETAILS_CONTAINER);
+      }
+
       container.appendChild($GAME_ITEM);
 
     });
-  }
-  
-  
-  const $FEATURED_CONTAINER = document.getElementById('featuredGamesContainer');
-
-  function displayFeaturedGames(featuredGames, container){
-    featuredGames.forEach( featuredGame => {
-
-      const $GAME_ITEM__COLUMN = document.createElement('div');
-      $GAME_ITEM__COLUMN.classList.add('col-sm-6', 'col-md-4', 'col-lg-3');
-
-      const $GAME_CARD = document.createElement('article');
-      $GAME_CARD.classList.add('card', 'featured__game');
-
-      const $GAME_IMG = document.createElement('img');
-      $GAME_IMG.src = featuredGame.image;
-      $GAME_IMG.alt = featuredGame.title;
-      $GAME_IMG.classList.add('card-img-top');
-      $GAME_IMG.width = 280;
-      $GAME_IMG.height = 280;
-
-      $GAME_CARD.appendChild($GAME_IMG);
-
-      const $GAME_DETAILS_CONTAINER = document.createElement('div');
-      $GAME_DETAILS_CONTAINER.classList.add('card-body')
-
-      const $GAME_NAME = document.createElement('h5');
-      $GAME_NAME.classList.add('featured__name');
-      $GAME_NAME.textContent = featuredGame.name;
-
-      const $GAME_DESCRIPTION_BUTTON = document.createElement('button');
-      $GAME_DESCRIPTION_BUTTON.type = 'button'
-      $GAME_DESCRIPTION_BUTTON.classList.add('featured__description-button')
-      $GAME_DESCRIPTION_BUTTON.textContent = 'Ver descripción'
-      $GAME_DESCRIPTION_BUTTON.addEventListener('click', function(){
-       
-        if( $GAME_DETAILS_CONTAINER.classList.contains('card-body--open-description')){
-          $GAME_DETAILS_CONTAINER.classList.remove('card-body--open-description')
-          $GAME_DESCRIPTION_BUTTON.textContent = 'Ver descripción'
-        } else {
-          $GAME_DETAILS_CONTAINER.classList.add('card-body--open-description')
-          $GAME_DESCRIPTION_BUTTON.textContent = 'Ocultar descripción'
-        }
-
-      })
-
-      const $GAME_PLATFORM = document.createElement('span');
-      $GAME_PLATFORM.textContent = featuredGame.platform;
-      $GAME_PLATFORM.classList.add('featured__platform');
-
-      const $GAME_PRICE = document.createElement('span');
-      $GAME_PRICE.textContent = '$' + featuredGame.price.toLocaleString();
-      $GAME_PRICE.classList.add('featured__price');
-
-      const $GAME_DESCRIPTION = document.createElement('p');
-      $GAME_DESCRIPTION.classList.add('featured__description');
-      $GAME_DESCRIPTION.textContent = featuredGame.description;
-
-      const $GAME_LINK = document.createElement('a');
-      $GAME_LINK.href = 'game-details.html';
-      $GAME_LINK.classList.add('btn', 'btn-outline-secondary', 'd-block')
-      $GAME_LINK.textContent = 'Ver detalle';
-
-      $GAME_DETAILS_CONTAINER.appendChild($GAME_NAME);
-      $GAME_DETAILS_CONTAINER.appendChild($GAME_DESCRIPTION);
-      $GAME_DETAILS_CONTAINER.appendChild($GAME_DESCRIPTION_BUTTON);
-      $GAME_DETAILS_CONTAINER.appendChild($GAME_PLATFORM);
-      $GAME_DETAILS_CONTAINER.appendChild($GAME_PRICE);
-      $GAME_DETAILS_CONTAINER.appendChild($GAME_LINK);
-
-      $GAME_CARD.appendChild($GAME_DETAILS_CONTAINER);
-      $GAME_ITEM__COLUMN.appendChild($GAME_CARD);
-      container.appendChild($GAME_ITEM__COLUMN);
-    })
   }
 
   const $SEARCH_MODAL = new bootstrap.Modal(document.getElementById('searchModal'), {
@@ -163,9 +153,9 @@ document.addEventListener('DOMContentLoaded', function(){
   }) 
   
   document.getElementById('searchModal').addEventListener('hidden.bs.modal', () => {
-  searchGames = [];
-  $SEARCH_INPUT.value = '';
-  $SEARCH_CONTAINER.innerHTML = '';
+    searchGames = [];
+    $SEARCH_INPUT.value = '';
+    $SEARCH_CONTAINER.innerHTML = '';
   })
   
   const $SEARCH_INPUT = document.getElementById('searchInput')
@@ -178,15 +168,12 @@ document.addEventListener('DOMContentLoaded', function(){
     $SEARCH_MODAL.show();
   })
   
-
-  const $SEARCH_CONTAINER = document.getElementById('searchGamesContainer');
-
   function searhGames(gamesArray, gameToSearch){
     searchGames = gamesArray.filter(game => game.name.includes(gameToSearch)) ;
     if(searchGames.length === 0) {
       
     } else{
-       displayBestSellerGames(searchGames, $SEARCH_CONTAINER);
+       displayGames(searchGames, $SEARCH_CONTAINER, SECTIONS.search);
 
     }
   }
