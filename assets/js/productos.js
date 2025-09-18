@@ -171,6 +171,13 @@ document.addEventListener('DOMContentLoaded', function(){
   function searhGames(gamesArray, gameToSearch){
     searchGames = gamesArray.filter(game => game.name.includes(gameToSearch)) ;
     if(searchGames.length === 0) {
+      const $MESSAGE_CONTAINER = document.createElement('div');
+      $MESSAGE_CONTAINER.classList.add('message')
+      const $MESSAGE = document.createElement('p')
+      $MESSAGE.textContent = 'No hemos encontrado el juego que estás buscando 😞'
+      $MESSAGE_CONTAINER.appendChild($MESSAGE)
+      $SEARCH_CONTAINER.appendChild($MESSAGE_CONTAINER)
+
       
     } else{
        displayGames(searchGames, $SEARCH_CONTAINER, SECTIONS.search);
