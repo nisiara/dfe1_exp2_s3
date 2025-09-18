@@ -21,8 +21,8 @@
         <a class="navbar-brand" href="index.html">
           <img src="./assets/images/logo.png" alt="Logo" width="180" height="72" class="d-inline-block align-text-top">
         </a>
-        <form class="search" name="search-product">
-          <input type="search" name="search" placeholder="Busca tu juego acá!">
+        <form class="search" name="searchForm">
+          <input type="search" id="searchInput" placeholder="Busca tu juego acá!">
           <button>🔍</button>
         </form>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -113,6 +113,19 @@
       <a href="tel:+56987654321">+56 9 8765 4321</a>
     </address>
   </footer>
+
+  <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="searchModalLabel">🔍 Resultado de tu busqueda</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <ol id="searchGamesContainer" class="modal-body"></ol>
+        
+      </div>
+    </div>
+  </div>
   
 </body>
 

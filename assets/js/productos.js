@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function(){
   let favoriteGames = [];
   let bestSellerGames = [];
   let featuredGames = [];
+  let searchGames = [];
 
   async function fetchGames(url) {
     try {
@@ -156,7 +157,41 @@ document.addEventListener('DOMContentLoaded', function(){
     })
   }
 
+  const $SEARCH_MODAL = new bootstrap.Modal(document.getElementById('searchModal'), {
+    keyboard: false,
+    backdrop: 'static'
+  }) 
+  
+  document.getElementById('searchModal').addEventListener('hidden.bs.modal', () => {
+  searchGames = [];
+  $SEARCH_INPUT.value = '';
+  $SEARCH_CONTAINER.innerHTML = '';
+  })
+  
+  const $SEARCH_INPUT = document.getElementById('searchInput')
 
+  const $SEARCH_FORM = document.forms.searchForm;
+  $SEARCH_FORM.addEventListener('submit', function(event){
+    event.preventDefault();
+    searhGames(games, $SEARCH_INPUT.value )
+
+    $SEARCH_MODAL.show();
+  })
+  
+
+  const $SEARCH_CONTAINER = document.getElementById('searchGamesContainer');
+
+  function searhGames(gamesArray, gameToSearch){
+    searchGames = gamesArray.filter(game => game.name.includes(gameToSearch)) ;
+    if(searchGames.length === 0) {
+      
+    } else{
+       displayBestSellerGames(searchGames, $SEARCH_CONTAINER);
+
+    }
+  }
+
+  
 
 
 
