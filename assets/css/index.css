@@ -127,7 +127,7 @@ section h2 {
   background: var(--color-background);
   transition: all 0.3s ease;
 }
-.game a:hover{
+.game__link-container:hover{
   background: #f9fbff;
   transform: scale(1.03);
   box-shadow: var(--shadow);
@@ -142,7 +142,6 @@ section h2 {
 }
 .game__image{
   max-width: 100%;
-  height: auto;
   border-radius: var(--border-md);
 }
 @media screen and (max-width: 767px) {
@@ -169,7 +168,9 @@ section h2 {
   font-size: var(--text-sm);
   font-weight: 700;
 }
-
+.game__quantity-cart{
+  font-size: var(--text-xxs);
+}
 .game__description{
   margin-bottom: 0;
   font-size: var(--text-xxs);
@@ -187,10 +188,13 @@ section h2 {
 .game__description--open-description .game__description{
   display: block;
 }
-
+.game__link-details{
+  margin: 16px auto 0;
+  font-size: var(--text-xxs);
+  text-decoration: underline;
+}
 .game .btn-outline-secondary{
   width: 100%;
-  margin-top: 16px;
   font-size: var(--text-xxs);
   font-weight: 300;
 }
@@ -198,6 +202,7 @@ section h2 {
   background: var(--color-primary);
   color: #f6f6f6;
   border-color: var(--color-primary);
+  box-shadow: var(--shadow);
 }
 
 #featuredGamesContainer .game__image{
@@ -205,6 +210,7 @@ section h2 {
   border-bottom-right-radius: 0;
   object-fit: cover;
   object-position: top;
+  height: auto;
 }
 #featuredGamesContainer .game__details{
   align-items: flex-start;
