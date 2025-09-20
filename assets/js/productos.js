@@ -23,8 +23,19 @@ document.addEventListener('DOMContentLoaded', function(){
 
       featuredGames = games.filter(product => product.tag === 'featured');
       displayGames(featuredGames, $FEATURED_CONTAINER, SECTIONS.featured);
-     
-    } catch (error) {
+    } 
+    catch (error) {
+      const $SECTIONS = document.getElementsByClassName('section')
+      $SECTIONS[0].innerHTML = ''
+      $SECTIONS[1].innerHTML = ''
+
+      const $MESSAGE_FETCH_ERROR = document.createElement('div');
+      $MESSAGE_FETCH_ERROR.classList.add('message')
+      const $MESSAGE = document.createElement('p')
+      $MESSAGE.textContent = error.message
+      $MESSAGE_FETCH_ERROR.appendChild($MESSAGE)
+      $SECTIONS[0].appendChild($MESSAGE_FETCH_ERROR)
+
       console.error(error.message);
     }
   }
@@ -43,35 +54,29 @@ document.addEventListener('DOMContentLoaded', function(){
   const $SEARCH_CONTAINER = document.getElementById('searchGamesContainer');
   const $CART_CONTAINER = document.getElementById('cartGamesContainer');
 
-  if(cartGames.length === 0){
-    const $MESSAGE_CONTAINER = document.createElement('div');
-    $MESSAGE_CONTAINER.classList.add('message')
-    const $MESSAGE = document.createElement('p')
-    $MESSAGE.textContent = 'No hay productos en el carro 😞'
-    $MESSAGE_CONTAINER.appendChild($MESSAGE)
-    $CART_CONTAINER.appendChild($MESSAGE_CONTAINER)
-  }
 
   function displayGames(games, container, section) {
     games.forEach(game => {
+      
+      //CANTIDAD CARRO
       if (!game.quantity) {
         game.quantity = 1;
       }
 
-      const $GAME_ITEM = document.createElement('article');
-
       //JUEGO
+      const $GAME = document.createElement('article');
+
       if(section === SECTIONS.bestSeller){
-        $GAME_ITEM.classList.add('game', 'col-md-6', 'col-lg-4');
+        $GAME.classList.add('game', 'col-md-6', 'col-lg-4');
       }
       if(section === SECTIONS.search || section === SECTIONS.cart){
-        $GAME_ITEM.classList.add('game');
+        $GAME.classList.add('game');
       }
       if(section === SECTIONS.featured){
-        $GAME_ITEM.classList.add('game', 'col-sm-6', 'col-md-4', 'col-lg-3');
+        $GAME.classList.add('game', 'col-sm-6', 'col-md-4', 'col-lg-3');
       }
 
-      //JUEGO IMAGEN
+      //IMAGEN
       const $GAME_IMG = document.createElement('img');
       $GAME_IMG.src = game.image;
       $GAME_IMG.alt = game.name;
@@ -89,26 +94,26 @@ document.addEventListener('DOMContentLoaded', function(){
         $GAME_IMG.height = 64;
       }
 
-      //JUEGO NOMBRE
+      //NOMBRE
       const $GAME_NAME = document.createElement('span');
       $GAME_NAME.textContent = game.name;
       $GAME_NAME.classList.add('game__name');
       
-      //JUEGO PLATAFORMA
+      //PLATAFORMA
       const $GAME_PLATFORM = document.createElement('span');
       $GAME_PLATFORM.textContent = game.platform;
       $GAME_PLATFORM.classList.add('game__platform');
 
-       // JUEGO PRECIO
+      //PRECIO
       const $GAME_PRICE = document.createElement('span');
       $GAME_PRICE.textContent = '$' + game.price.toLocaleString('es-CL');
       $GAME_PRICE.classList.add('game__price');
       
-      //JUEGO CONTENEDOR DETALLES
+      //CONTENEDOR DETALLES
       const $GAME_DETAILS_CONTAINER = document.createElement('div');
       $GAME_DETAILS_CONTAINER.classList.add('game__details')
 
-      //JUEGO CONTENDOR LINK
+      //CONTENDOR LINK
       const $GAME_LINK_CONTAINER = document.createElement('a');
       if(section === SECTIONS.bestSeller || section === SECTIONS.search || section === SECTIONS.cart){
         $GAME_LINK_CONTAINER.classList.add('game__link-container')
@@ -117,15 +122,14 @@ document.addEventListener('DOMContentLoaded', function(){
         $GAME_LINK_CONTAINER.appendChild($GAME_IMG);
         $GAME_LINK_CONTAINER.appendChild($GAME_DETAILS_CONTAINER);
       
-        $GAME_ITEM.appendChild($GAME_LINK_CONTAINER);
+        $GAME.appendChild($GAME_LINK_CONTAINER);
 
         $GAME_DETAILS_CONTAINER.appendChild($GAME_NAME);
         $GAME_DETAILS_CONTAINER.appendChild($GAME_PLATFORM);
         $GAME_DETAILS_CONTAINER.appendChild($GAME_PRICE);
       }
 
-      // JUEGO CANTIDAD CARRO
-      
+      //CANTIDAD CARRO Y ELIMINAR DEL CARRO
       if(section === SECTIONS.cart){
 
         const $GAME_CART_QUANTITY = document.createElement('span')
@@ -133,7 +137,14 @@ document.addEventListener('DOMContentLoaded', function(){
         $GAME_CART_QUANTITY.textContent = `Cantidad: ${game.quantity}`;
 
         $GAME_DETAILS_CONTAINER.appendChild($GAME_CART_QUANTITY);
+        
+        const $GAME_CART_DELETE = document.createElement('button')
+        $GAME_CART_DELETE.type = 'button'
+        $GAME_CART_DELETE.classList.add('game__delete')
+        $GAME_CART_DELETE.textContent = `Eliminar`;
+        $GAME_CART_DELETE.addEventListener('click', () => deleteProduct(game.id))
 
+        $GAME_DETAILS_CONTAINER.appendChild($GAME_CART_DELETE);
       }
 
       if(section === SECTIONS.featured){
@@ -173,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function(){
         $GAME_ADD_TO_CART.classList.add('btn', 'btn-outline-secondary', 'd-block')
         $GAME_ADD_TO_CART.textContent = 'Agregar al carrito';
         
-        $GAME_ITEM.appendChild($GAME_IMG);
+        $GAME.appendChild($GAME_IMG);
         $GAME_DETAILS_CONTAINER.appendChild($GAME_NAME);
         $GAME_DETAILS_CONTAINER.appendChild($GAME_DESCRIPTION);
         $GAME_DETAILS_CONTAINER.appendChild($GAME_DESCRIPTION_BUTTON);
@@ -182,10 +193,10 @@ document.addEventListener('DOMContentLoaded', function(){
         // $GAME_DETAILS_CONTAINER.appendChild($GAME_LINK);
         $GAME_DETAILS_CONTAINER.appendChild($GAME_ADD_TO_CART);
 
-        $GAME_ITEM.appendChild($GAME_DETAILS_CONTAINER);
+        $GAME.appendChild($GAME_DETAILS_CONTAINER);
       }
 
-      container.appendChild($GAME_ITEM);
+      container.appendChild($GAME);
 
     });
   }
@@ -194,20 +205,44 @@ document.addEventListener('DOMContentLoaded', function(){
   /* ----------- CARRO ----------- */
   const $CART_NOTIFICATION = document.getElementById('cartNotification')
   const toastInstance = bootstrap.Toast.getOrCreateInstance($CART_NOTIFICATION)
-  const $SEARCH_MODAL = new bootstrap.Modal(document.getElementById('searchModal'), {
-    keyboard: false,
-    backdrop: 'static'
-  }) 
+  
 
+  if(cartGames.length === 0){
+    const $MESSAGE_CONTAINER = document.createElement('div');
+    $MESSAGE_CONTAINER.classList.add('message')
+    const $MESSAGE = document.createElement('p')
+    $MESSAGE.textContent = 'No hay productos en el carro 😞'
+    $MESSAGE_CONTAINER.appendChild($MESSAGE)
+    $CART_CONTAINER.appendChild($MESSAGE_CONTAINER)
+  }
+  
+  function deleteProduct(gameId){
+    cartGames = cartGames.filter( game => game.id !== gameId)
+    
+    $CART_CONTAINER.innerHTML = '';
+    displayGames(cartGames, $CART_CONTAINER, SECTIONS.cart)
+    $CART_LENGHT.textContent = cartGames.length;
+    
+    if(cartGames.length > 0){
+      const total = calculateTotal(cartGames);
+      $CART_TOTAL.textContent = `💰 Subtotal compra $${total.toLocaleString('es-CL')}`
+      $CART_CONTAINER.appendChild($CART_TOTAL)
+    } else {
+      const $MESSAGE_CONTAINER = document.createElement('div');
+      $MESSAGE_CONTAINER.classList.add('message')
+      const $MESSAGE = document.createElement('p')
+      $MESSAGE.textContent = 'Has eliminado todos los productos del carro 😱'
+      $MESSAGE_CONTAINER.appendChild($MESSAGE)
+      $CART_CONTAINER.appendChild($MESSAGE_CONTAINER)
+    }
+    
+  }
   function calculateTotal(games){
-    return games.reduce( (accu, item) => {
-      return accu + (item.price * item.quantity);
-    }, 0)
+    return games.reduce( (accu, item) => accu + (item.price * item.quantity), 0)
   }
 
   const $CART_TOTAL = document.createElement('div')
   $CART_TOTAL.classList.add('cart__total')
-  
 
   function addToCart(product){
     const checkGame = cartGames.some( game => game.id === product.id)
@@ -228,14 +263,17 @@ document.addEventListener('DOMContentLoaded', function(){
     displayGames(cartGames, $CART_CONTAINER, SECTIONS.cart)
     $CART_LENGHT.textContent = cartGames.length;
 
-    $CART_TOTAL.textContent = `Subtotal $${total.toLocaleString('es-CL')}`
+    $CART_TOTAL.textContent = `💰 Subtotal compra $${total.toLocaleString('es-CL')}`
     $CART_CONTAINER.appendChild($CART_TOTAL)
 
   }
 
   /* ----------- BUSCADOR ----------- */
   
-  
+  const $SEARCH_MODAL = new bootstrap.Modal(document.getElementById('searchModal'), {
+    keyboard: false,
+    backdrop: 'static'
+  }) 
   document.getElementById('searchModal').addEventListener('hidden.bs.modal', () => {
     searchGames = [];
     $SEARCH_INPUT.value = '';

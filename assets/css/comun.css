@@ -221,8 +221,8 @@ footer a{
 }
 .cart__total{
   margin: auto -16px -16px;
-  font-weight: 700;
-  font-size: var(--text-md);
+  font-weight: 600;
+  font-size: var(--text-sm);
   background: var(--color-secondary);
   padding: 16px;
   text-align: right;
