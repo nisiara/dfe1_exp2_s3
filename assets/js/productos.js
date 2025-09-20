@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function(){
       const $GAME_LINK_CONTAINER = document.createElement('a');
       if(section === SECTIONS.bestSeller || section === SECTIONS.search || section === SECTIONS.cart){
         $GAME_LINK_CONTAINER.classList.add('game__link-container')
-        $GAME_LINK_CONTAINER.href = 'game-details.html';
+        // $GAME_LINK_CONTAINER.href = 'game-details.html';
 
         $GAME_LINK_CONTAINER.appendChild($GAME_IMG);
         $GAME_LINK_CONTAINER.appendChild($GAME_DETAILS_CONTAINER);
@@ -156,10 +156,12 @@ document.addEventListener('DOMContentLoaded', function(){
         })
 
         //JUEGO LINK BOTON
+        /* 
         const $GAME_LINK = document.createElement('a');
         $GAME_LINK.href = 'game-details.html';
         $GAME_LINK.classList.add('game__link-details')
         $GAME_LINK.textContent = 'Ver detalle';
+        */
 
         //JUEGO BOTON AGREGAR AL CARRO
         const $GAME_ADD_TO_CART = document.createElement('button');
@@ -174,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function(){
         $GAME_DETAILS_CONTAINER.appendChild($GAME_DESCRIPTION_BUTTON);
         $GAME_DETAILS_CONTAINER.appendChild($GAME_PLATFORM);
         $GAME_DETAILS_CONTAINER.appendChild($GAME_PRICE);
-        $GAME_DETAILS_CONTAINER.appendChild($GAME_LINK);
+        // $GAME_DETAILS_CONTAINER.appendChild($GAME_LINK);
         $GAME_DETAILS_CONTAINER.appendChild($GAME_ADD_TO_CART);
 
         $GAME_ITEM.appendChild($GAME_DETAILS_CONTAINER);
