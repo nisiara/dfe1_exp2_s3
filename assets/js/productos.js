@@ -296,7 +296,7 @@ document.addEventListener('DOMContentLoaded', function(){
       const $MESSAGE_CONTAINER = document.createElement('div');
       $MESSAGE_CONTAINER.classList.add('message')
       const $MESSAGE = document.createElement('p')
-      $MESSAGE.textContent = 'No hemos encontrado el juego que estás buscando 😞'
+      $MESSAGE.textContent = `No hemos encontrado el juego ${gameToSearch} que estás buscando 😞`
       $MESSAGE_CONTAINER.appendChild($MESSAGE)
       $SEARCH_CONTAINER.appendChild($MESSAGE_CONTAINER)
     } else{
