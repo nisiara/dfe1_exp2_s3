@@ -8,6 +8,18 @@ document.addEventListener('DOMContentLoaded', function(){
   let searchGames = [];
   let cartGames = [];
 
+  const $BEST_SELLER_CONTAINER = document.getElementById('bestSellerGamesContainer');
+  const $FEATURED_CONTAINER = document.getElementById('featuredGamesContainer');
+  const $SEARCH_CONTAINER = document.getElementById('searchGamesContainer');
+  const $CART_CONTAINER = document.getElementById('cartGamesContainer');
+
+  const SECTIONS = {
+    bestSeller: 'bestSeller',
+    featured: 'featured',
+    search: 'search',
+    cart: 'cart'
+  }
+
   const $CART_LENGHT = document.getElementById('totalCartProducts');
   $CART_LENGHT.textContent = cartGames.length;
 
@@ -25,32 +37,20 @@ document.addEventListener('DOMContentLoaded', function(){
       displayGames(featuredGames, $FEATURED_CONTAINER, SECTIONS.featured);
      
     } catch (error) {
-      console.error(error.message);
+      const SECTIONS = document.getElementsByClassName('section');
+      SECTIONS[0].innerHTML = ''
+      SECTIONS[1].innerHTML = ''
+      
+      const $MESSAGE_ERROR = document.createElement('div');
+      $MESSAGE_ERROR.classList.add('message')
+      const $MESSAGE = document.createElement('p')
+      $MESSAGE.textContent = 'Tuvimos un problema y no hemos encotrado juegos 😞'
+      $MESSAGE_ERROR.appendChild($MESSAGE)
+      SECTIONS[0].appendChild($MESSAGE_ERROR)
     }
   }
 
   fetchGames(JSON_URL);
-
-  const SECTIONS = {
-    bestSeller: 'bestSeller',
-    featured: 'featured',
-    search: 'search',
-    cart: 'cart'
-  }
-
-  const $BEST_SELLER_CONTAINER = document.getElementById('bestSellerGamesContainer');
-  const $FEATURED_CONTAINER = document.getElementById('featuredGamesContainer');
-  const $SEARCH_CONTAINER = document.getElementById('searchGamesContainer');
-  const $CART_CONTAINER = document.getElementById('cartGamesContainer');
-
-  if(cartGames.length === 0){
-    const $MESSAGE_CONTAINER = document.createElement('div');
-    $MESSAGE_CONTAINER.classList.add('message')
-    const $MESSAGE = document.createElement('p')
-    $MESSAGE.textContent = 'No hay productos en el carro 😞'
-    $MESSAGE_CONTAINER.appendChild($MESSAGE)
-    $CART_CONTAINER.appendChild($MESSAGE_CONTAINER)
-  }
 
   function displayGames(games, container, section) {
     games.forEach(game => {
@@ -125,15 +125,12 @@ document.addEventListener('DOMContentLoaded', function(){
       }
 
       // JUEGO CANTIDAD CARRO
-      
       if(section === SECTIONS.cart){
-
         const $GAME_CART_QUANTITY = document.createElement('span')
         $GAME_CART_QUANTITY.classList.add('game__quantity-cart')
         $GAME_CART_QUANTITY.textContent = `Cantidad: ${game.quantity}`;
 
         $GAME_DETAILS_CONTAINER.appendChild($GAME_CART_QUANTITY);
-
       }
 
       if(section === SECTIONS.featured){
@@ -188,8 +185,7 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
 
-  const $CART_NOTIFICATION = document.getElementById('cartNotification')
-  const toastInstance = bootstrap.Toast.getOrCreateInstance($CART_NOTIFICATION)
+  
 
   const $SEARCH_MODAL = new bootstrap.Modal(document.getElementById('searchModal'), {
     keyboard: false,
@@ -211,19 +207,31 @@ document.addEventListener('DOMContentLoaded', function(){
 
     $SEARCH_MODAL.show();
   })
+
+  const $CART_NOTIFICATION = document.getElementById('cartNotification')
+  const toastInstance = bootstrap.Toast.getOrCreateInstance($CART_NOTIFICATION)
   
+  if(cartGames.length === 0){
+    const $MESSAGE_CART = document.createElement('div');
+    $MESSAGE_CART.classList.add('message')
+    const $MESSAGE = document.createElement('p')
+    $MESSAGE_CART.appendChild($MESSAGE)
+    $MESSAGE.textContent = 'No hay productos en el carro 😞'
+    $CART_CONTAINER.appendChild($MESSAGE_CART)
+  }
+
   function addToCart(product){
     const checkGame = cartGames.some( game => game.id === product.id)
     if(checkGame) {
       const cartProduct = cartGames.find(game => game.id === product.id);
       cartProduct.quantity += 1;
-    } else {
+    } 
+    else {
       cartGames.push(product)
 
       const $NOTIFICATION_TEXT = document.getElementById('textNotification');
       $NOTIFICATION_TEXT.textContent = `${product.name.toUpperCase()} se ha agregado al carro 🤩`;
       toastInstance.show()
-
     }
     
     $CART_CONTAINER.innerHTML = '';

@@ -228,3 +228,7 @@ section h2 {
   flex-direction: column;
   gap: 12px;
 }
+
+#cartGamesContainer .game__platform{
+  display: none;
+}
